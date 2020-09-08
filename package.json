@@ -4,7 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node ./src/pachong.ts"
+    "run": "ts-node ./src/pachong.ts",
+    "dev:ts-compile": "tsc -w",
+    "dev:start": "nodemon node ./build/pachong.js",
+    "dev": "concurrently npm:dev:*"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "data/*"
+    ],
+    "delay": "2500"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +22,8 @@
     "@types/cheerio": "^0.22.21",
     "@types/superagent": "^4.1.10",
     "cheerio": "^1.0.0-rc.3",
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4",
     "superagent": "^6.1.0"
   }
 }

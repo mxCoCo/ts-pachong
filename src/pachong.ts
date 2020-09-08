@@ -40,9 +40,15 @@ class Pachong {
     let fileContent: CoureInfo[] = [];
     if (fs.existsSync(filePath)) {
       const fileData = fs.readFileSync(filePath, "utf-8");
-      fileContent = JSON.parse(fileData);
-      console.log("-------course.json文件读取成功！-------");
-      console.log(fileContent);
+      if (fileData == "") {
+        fs.writeFileSync(filePath, JSON.stringify(imoocTitleArr), "utf-8");
+        console.log("-------course.json文件创建成功！-------");
+        console.log(imoocTitleArr);
+      } else {
+        fileContent = JSON.parse(fileData);
+        console.log("-------course.json文件读取成功！-------");
+        console.log(fileContent);
+      }
     } else {
       fs.writeFileSync(filePath, JSON.stringify(imoocTitleArr), "utf-8");
       console.log("-------course.json文件创建成功！-------");
